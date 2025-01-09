@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
         perror("listen error...");
         return -1;
     }
+    printf("Server is listening on port %d\n", port);
 
     while(1) {
         csock = accept(ssock, (struct sockaddr*)&servaddr, &caddrlen);
