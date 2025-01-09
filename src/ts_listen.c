@@ -8,6 +8,8 @@
 *   backlog - the number of clients the server can
 *       accept at a go
 *
+* Note: To use the defaults, pass in a zero(0)
+*
 * output:
 *   ssock - a listening tcp socket
 *
@@ -17,7 +19,7 @@ int ts_listen(char *ip, int port, int backlog) {
     int ssock;
     
     if(!ip) {
-        ip = "127.0.0.0.1";
+        ip = "127.0.0.0.1"; // dont allow outside connections by default
     }
     if(port == 0) {
         port = 9000;

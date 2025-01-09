@@ -5,9 +5,10 @@ int main(int argc, char *argv[]) {
     int ssock, csock;
     int port = 9000;
     int backlog = 10;
-    char *ip = "0.0.0.0";
+    char *ip = "0.0.0.0"; // listen on all interfaces
     char buf[1024];
     int ret;
+    int pid; // process id representing the process created to handle client communication process
 
     if(argc == 1) {
         ; // use the defaults
@@ -31,7 +32,11 @@ int main(int argc, char *argv[]) {
         csock = ts_accept(ssock);
         if(!csock) {
             perror("accept() error...");
-        } else {
+            continue;
+        }
+        
+        pid = fork();
+        if(!pid) {
             ret = read(csock, buf, sizeof(buf));
             if(ret <= 0) {
                 printf("Did not receive any data from client");
