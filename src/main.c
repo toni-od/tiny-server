@@ -8,7 +8,6 @@ int main(int argc, char *argv[]) {
     char *ip = "0.0.0.0";
     char buf[1024];
     int ret;
-    socklen_t caddrlen;
 
     if(argc == 1) {
         ; // use the defaults
@@ -21,27 +20,12 @@ int main(int argc, char *argv[]) {
         printf("Usage: ./cservd <port> <backlog>\n");
         return -1;
     }
-
-    servaddr.sin_family = AF_INET;
-    servaddr.sin_port = htons(port);
-    servaddr.sin_addr.s_addr = inet_addr(ip);
-
-    ssock = socket(AF_INET, SOCK_STREAM, 0);
+    
+    ssock = ts_listen(ip, port, backlog);
     if(ssock < 0) {
-        perror("socket() error...");
+        perror("listen() error...");
         return -1;
     }
-
-    if(bind(ssock, (struct sockaddr *)&servaddr, sizeof(struct sockaddr)) == -1) {
-        perror("bind() error...");
-        return -1;
-    }
-
-    if(listen(ssock, backlog) == -1) {
-        perror("listen error...");
-        return -1;
-    }
-    printf("Server is listening on port %d\n", port);
 
     while(1) {
         csock = ts_accept(ssock);

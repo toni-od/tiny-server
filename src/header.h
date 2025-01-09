@@ -11,5 +11,6 @@
 #include <stdlib.h>
 
 int ts_accept(int serv_sock);
+int ts_listen(char *ip, int port, int backlog);
 
 #endif // _TS_H
