@@ -1,6 +1,6 @@
 #include "header.h"
 /*
-* listen/3
+* ts_listen/3
 *
 * input:
 *   ip - the ip address of the server as a string

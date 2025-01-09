@@ -1,1 +1,3 @@
-Binary folder to hold the compiled binary
+/bin/
+
+A folder to hold all the compiled binaries
