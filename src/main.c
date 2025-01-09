@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+#include "header.h"
 
 int main(int argc, char *argv[]) {
     struct sockaddr_in servaddr;
@@ -51,8 +44,8 @@ int main(int argc, char *argv[]) {
     printf("Server is listening on port %d\n", port);
 
     while(1) {
-        csock = accept(ssock, (struct sockaddr*)&servaddr, &caddrlen);
-        if(csock == -1) {
+        csock = ts_accept(ssock);
+        if(!csock) {
             perror("accept() error...");
         } else {
             ret = read(csock, buf, sizeof(buf));
