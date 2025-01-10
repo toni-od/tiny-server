@@ -13,6 +13,6 @@
 int ts_serve(char *ip, int port, int backlog);
 int ts_accept(int serv_sock);
 int ts_listen(char *ip, int port, int backlog);
-int ts_handle(int ssock, int csock);
+int ts_handle(int csock);
 
 #endif // _TS_H

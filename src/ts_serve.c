@@ -20,9 +20,14 @@ int ts_serve(char *ip, int port, int backlog) {
         }
         
         int pid = fork();
-        if(!pid) {
+        if (pid == 0) {
             printf("[new connection] Initializing client process...\n");
-            ts_handle(ssock, csock);
+            ts_handle(csock);
+            exit(0);  // terminate the child process
+        } else if (pid > 0) { // not a new process
+            close(csock);
+        } else {
+            perror("fork() error");
         }
     }
 
