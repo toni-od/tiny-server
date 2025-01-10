@@ -28,6 +28,7 @@ bin/ts_serve.o:
 
 # only run invoking make to produce the executable
 run:
+	@clear
 	@./bin/server
 	
 clean:

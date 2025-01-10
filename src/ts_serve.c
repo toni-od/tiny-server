@@ -17,7 +17,9 @@ int ts_serve(char *ip, int port, int backlog) {
             continue;
         }
         
-        if(!fork()) {
+        int pid = fork();
+        if(!pid) {
+            printf("[new connection] Initializing client process...\n");
             ts_handle(ssock, csock);
         }
     }
