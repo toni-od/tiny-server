@@ -21,7 +21,6 @@ int ts_handle(int csock) {
             "Connection: close\r\n"
             "\r\n"
             "<html><body><h1>Hello, World!</h1></body></html>";
-        // char *data = "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE html><html><body><h1>Hello from tiny-server!</h1></body></html>\r\n";
         write(csock, data, strlen(data));
     }
     // free up resources
