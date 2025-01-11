@@ -10,6 +10,17 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+struct Request {
+    char method[8];
+    char url[128];
+    char scheme[9];
+    char **headers;
+    char *body;
+};
+typedef struct Request Request;
+
+Request *http_parse_request(char *str);
+
 int ts_serve(char *ip, int port, int backlog);
 int ts_accept(int serv_sock);
 int ts_listen(char *ip, int port, int backlog);

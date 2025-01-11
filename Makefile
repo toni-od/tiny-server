@@ -6,7 +6,7 @@
 # -
 
 target=bin/server
-objects=bin/main.o bin/ts_accept.o bin/ts_listen.o bin/ts_handle.o bin/ts_serve.o
+objects=bin/main.o bin/ts_accept.o bin/ts_listen.o bin/ts_handle.o bin/ts_serve.o bin/http_parser.o
 
 $(target): $(objects)
 	cc -o $(target) $(objects)
@@ -25,6 +25,9 @@ bin/ts_handle.o:
 
 bin/ts_serve.o:
 	cc -c src/ts_serve.c -o bin/ts_serve.o
+
+bin/http_parser.o:
+	cc -c src/http_parser.c -o bin/http_parser.o
 
 # only run invoking make to produce the executable
 run:
